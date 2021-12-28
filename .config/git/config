@@ -1,0 +1,68 @@
+[user]
+	name = Daniel Koo
+	email = 1916351+danielkoo@users.noreply.github.com
+[core]
+	excludesfile = ~/.gitignore
+  editor = vim
+  repositoryformatversion = 0
+  filemode = true
+  autocrlf = input
+  whitespace = blank-at-eol,blank-at-eof,space-before-tab
+[http]
+  postBuffer = 52428800
+[https]
+[merge]
+  ff = only
+[pull]
+  ff = only
+[color]
+  ui = true
+  status = auto
+  branch = auto
+  diff = auto
+	interactive = auto
+[merge]
+  tool = diffmerge
+[diff]
+  tool = diffmerge
+[difftool "diffmerge"]
+  cmd = /usr/local/bin/diffmerge $LOCAL $REMOTE
+[mergetool "diffmerge"]
+  cmd = /usr/local/bin/diffmerge --merge --result=$MERGED $LOCAL $BASE $REMOTE
+  trustExitCode = true
+[mergetool]
+  keepBackup = false
+[push]
+  default = current
+[credential]
+  #  helper = cache --timeout 86400
+	helper = osxkeychain
+[alias]
+  pl = pull -—rebase
+  pf = push --force-with-lease
+  st = status
+	c = commit
+	ca = commit -a
+	cm = commit -m
+	cam = commit -am
+	d = diff
+	dc = diff --cached
+	l = log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit
+[filter "lfs"]
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
+  clean = git-lfs clean -- %f
+[init]
+  defaultBranch = main
+[web]
+  browser = google-chrome
+
+#[push]
+#  default = simple
+#[merge]
+#  tool = kdiff3
+#[difftool]
+#  prompt = false
+#[pull]
+#	rebase = true

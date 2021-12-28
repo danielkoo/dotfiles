@@ -1,0 +1,48 @@
+[user]
+	name = Daniel Koo
+	email = daniel.koo@iag.com.au
+[core]
+	excludesfile = /Users/s112079/.gitignore
+        editor = vim
+        repositoryformatversion = 0
+        filemode = true
+        autocrlf = input
+        whitespace = blank-at-eol,blank-at-eof,space-before-tab
+[http]
+        postBuffer = 52428800
+    #sslCAInfo = "/Users/s112079/certs/iag-internal-ca.pem"
+    sslCAInfo = "/Users/s112079/certs/ca-certs.pem"
+	proxy = http://127.0.0.1:3128
+[merge]
+        ff = only
+[pull]
+        ff = only
+[color]
+        ui = true
+        status = auto
+        branch = auto
+[merge]
+        tool = diffmerge
+[diff]
+        tool = diffmerge
+[difftool "diffmerge"]
+	cmd = /usr/local/bin/diffmerge $LOCAL $REMOTE
+[mergetool "diffmerge"]
+        cmd = /usr/local/bin/diffmerge --merge --result=$MERGED $LOCAL $BASE $REMOTE
+	trustExitCode = true
+[mergetool]
+        keepBackup = false
+[push]
+	default = current
+[credential]
+	helper = cache --timeout 86400
+[alias]
+      pl = pull -—rebase
+      pf = push --force-with-lease
+      st = status
+[https]
+    #sslCAInfo = "/Users/s112079/certs/iag-internal-ca.pem"
+    sslCAInfo = "/Users/s112079/certs/ca-certs.pem"
+	proxy = http://127.0.0.1:3128
+[rerere]
+	enabled = true
