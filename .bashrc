@@ -104,13 +104,6 @@ export GOPATH=~/go
 export PATH=/usr/local/sbin:$PATH
 export PATH=/usr/local/bin:$PATH
 
-# asdf
-if [[ -n "$TMUX" ]]; then
-    BREW_ASDF_PATH=/usr/local/opt/asdf
-    . "${BREW_ASDF_PATH}/asdf.sh"
-    . "${BREW_ASDF_PATH}/etc/bash_completion.d/asdf.bash"
-fi
-
 if [[ -f ~/perl5/perlbrew/etc/bashrc && $OSTYPE == darwin* ]]
 then
     source ~/perl5/perlbrew/etc/bashrc
@@ -151,15 +144,20 @@ export npm_config_loglevel=info
 
 [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
 
-# this loads asdf iff it's running under tmux
-# asdf-vm
+# always load asdf
 #if { [[ "$TERM" == "screen"* ]] && [ -n "$TMUX" ]; } then
-if { [[ "$TERM" == "xterm"* ]] && [ -z "$TMUX" ]; } then
     #brew --prefix asdf is what used to run to give us thepath below, but it's so slow (v 2.2.0) at 1-5s *per call* that I'm hard-coding the path
-    BREW_ASDF_PREFIX=/usr/local/opt/asdf
-    . ${BREW_ASDF_PREFIX}/asdf.sh
-    . ${BREW_ASDF_PREFIX}/etc/bash_completion.d/asdf.bash
-fi
+#if { [[ "$TERM" == "xterm"* ]] && [ -z "$TMUX" ]; } then
+#if [[ -n "$TMUX" ]]; then
+    if [[ $(arch) == i386 ]]; then
+        BREW_ASDF_PATH=/usr/local/opt/asdf
+    else
+        BREW_ASDF_PATH=/opt/homebrew/opt/asdf
+    fi
+    . "${BREW_ASDF_PATH}/asdf.sh"
+    . "${BREW_ASDF_PATH}/etc/bash_completion.d/asdf.bash"
+#fi
+
 
 # suppress Catalina zsh warning
 export BASH_SILENCE_DEPRECATION_WARNING=1
