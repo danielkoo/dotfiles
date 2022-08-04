@@ -47,16 +47,16 @@ fi
 
 # do this if we're on an IAG machine
 if $IS_IAG_MACHINE; then
-  export http_proxy=http:/localhost:3128
-  export https_proxy=${http_proxy}
-  export HTTP_PROXY=${http_proxy}
-  export HTTPS_PROXY=${http_proxy}
-  export no_proxy="localhost,127.0.0.1,10.*,*.auiag.corp,192.168.*,*.devlabs,*.iagcloud.net,localhost.localdomain,*.iaglimited.net,*.iagcloud,*.iag.com.au,localaddress,*.localdomain.com,*.local,169.254.169.254,*.internal,172.20.0.0/16"
-  export NO_PROXY=${no_proxy}
+#  export http_proxy=http:/localhost:3128
+#  export https_proxy=${http_proxy}
+#  export HTTP_PROXY=${http_proxy}
+#  export HTTPS_PROXY=${http_proxy}
+#  export no_proxy="localhost,127.0.0.1,10.*,*.auiag.corp,192.168.*,*.devlabs,*.iagcloud.net,localhost.localdomain,*.iaglimited.net,*.iagcloud,*.iag.com.au,localaddress,*.localdomain.com,*.local,169.254.169.254,*.internal,172.20.0.0/16"
+#  export NO_PROXY=${no_proxy}
 
-  if [ -f ~/.bash/proxy_on_off.sh ]; then
-    source ~/.bash/proxy_on_off.sh
-  fi
+#  if [ -f ~/.bash/proxy_on_off.sh ]; then
+#    source ~/.bash/proxy_on_off.sh
+#  fi
 
 # AWS CLI
   if [[ -f ~/.python-env/bin/activate ]]; then
@@ -119,9 +119,10 @@ then
     for i in http.proxy https.proxy
     do
         # set it only if it doesn't exist, otherwise all the iTerm tabs will all try to write to the git config file at the same time
-        if ! git config --global $i > /dev/null; then
-            git config --global $i $HTTP_PROXY
-        fi
+#        if ! git config --global $i > /dev/null; then
+#            git config --global $i $HTTP_PROXY
+#        fi
+        echo "making no proxy changes to the git config right now"
     done
 fi
 
@@ -162,6 +163,6 @@ export npm_config_loglevel=info
 # suppress Catalina zsh warning
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
-if $IS_IAG_MACHINE; then
-  proxy_on
-fi
+#if $IS_IAG_MACHINE; then
+#  proxy_on
+#fi
