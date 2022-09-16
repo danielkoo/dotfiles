@@ -1,0 +1,9 @@
+[includeIf "gitdir:~/code/bitbucket/"]
+  path = ~/.config/git/personal/config
+[includeIf "gitdir:~/code/github/"]
+  path = ~/.config/git/personal/config
+[includeIf "gitdir:~/code/stash/"]
+  path = ~/.config/git/personal/config
+[includeIf "gitdir:~/code/iag/"]
+  path = ~/.config/git/iag/config
+
