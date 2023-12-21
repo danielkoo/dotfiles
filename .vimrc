@@ -81,7 +81,7 @@ autocmd BufNewFile,BufRead *.json set ft=javascript
 autocmd BufNewFile,BufRead *.sh set ff=unix
 
 " Terraform support
-autocmd BufEnter *.tf* colorscheme icansee
+" autocmd BufEnter *.tf* colorscheme icansee
 let g:terraform_fmt_on_save=1
 let g:terraform_align=1
 

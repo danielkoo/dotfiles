@@ -45,6 +45,11 @@ then
   source ~/.bash/git-completion.bash
 fi
 
+if [ -f ~/.bash/direnv.bash ]
+then
+  source ~/.bash/direnv.bash
+fi
+
 # do this if we're on an IAG machine
 if $IS_IAG_MACHINE; then
 #  export http_proxy=http:/localhost:3128
@@ -72,6 +77,7 @@ elif [ -f /usr/local/bin/aws_completer ]; then
 elif [ -f /usr/local/aws/bin/aws_completer ]; then
     AWS_CLI=/usr/local/aws/bin/aws_completer
 fi
+export AWS_CA_BUNDLE=~/certs/iag-internal-ca-2020.pem
 if [[ $AWS_CLI ]]; then
     complete -C $AWS_CLI aws
 fi
@@ -89,6 +95,9 @@ fi
 
 export EDITOR=vim
 export VISUAL=vim
+
+# MITM proxy cert stuff
+export NODE_EXTRA_CA_CERTS=/Users/s112079/certs/iag-internal-ca-2020.pem
 
 # my own stuff
 export PATH=~/bin:$PATH
@@ -140,6 +149,9 @@ fi
 ## TODO optimise this load time
 ##eval "$(pipenv --completion)"
 
+export PIP_CERT=~/certs/iag-internal-ca-2020.pem
+export REQUESTS_CA_BUNDLE=~/certs/iag-internal-ca-2020.pem
+
 # for NPM https://docs.npmjs.com/misc/config
 export npm_config_loglevel=info
 
@@ -150,13 +162,13 @@ export npm_config_loglevel=info
     #brew --prefix asdf is what used to run to give us thepath below, but it's so slow (v 2.2.0) at 1-5s *per call* that I'm hard-coding the path
 #if { [[ "$TERM" == "xterm"* ]] && [ -z "$TMUX" ]; } then
 #if [[ -n "$TMUX" ]]; then
-    if [[ $(arch) == i386 ]]; then
-        BREW_ASDF_PATH=/usr/local/opt/asdf
+    if [[ -e /opt/homebrew/opt/asdf ]]; then
+      BREW_ASDF_PATH=/opt/homebrew/opt/asdf
+      . "${BREW_ASDF_PATH}/libexec/asdf.sh"
+      . "${BREW_ASDF_PATH}/etc/bash_completion.d/asdf.bash"
     else
-        BREW_ASDF_PATH=/opt/homebrew/opt/asdf
+      BREW_ASDF_PATH=/usr/local/opt/asdf
     fi
-    . "${BREW_ASDF_PATH}/asdf.sh"
-    . "${BREW_ASDF_PATH}/etc/bash_completion.d/asdf.bash"
 #fi
 
 
@@ -166,3 +178,15 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 #if $IS_IAG_MACHINE; then
 #  proxy_on
 #fi
+eval "export HOMEBREW_PREFIX="/opt/homebrew";
+export HOMEBREW_CELLAR="/opt/homebrew/Cellar";
+export HOMEBREW_REPOSITORY="/opt/homebrew";
+export PATH="/opt/homebrew/bin:/opt/homebrew/sbin${PATH+:$PATH}";
+export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:";
+export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}";"
+
+# if using Colima instead of Docker Desktop
+export DOCKER_HOST="unix://${HOME}/.colima/default/docker.sock"
+export DOCKER_DEFAULT_PLATFORM=linux/amd64
+
+source <(k3d completion bash)

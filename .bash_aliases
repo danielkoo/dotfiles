@@ -34,6 +34,7 @@ alias l='ls -CF'
 alias vi='vim -p'
 alias cp='cp -i'
 alias mv='mv -i'
+alias ag='ag --hidden -a'
 alias brew='brew -v'
 alias cdqmk='cd /Users/dank/code/github/personal/qmk_firmware/keyboards/handwired/dactyl_manuform/4x6_5/keymaps/default'
 

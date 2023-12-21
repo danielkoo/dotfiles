@@ -11,8 +11,8 @@
 [http]
         postBuffer = 52428800
     #sslCAInfo = "/Users/s112079/certs/iag-internal-ca.pem"
-    sslCAInfo = "/Users/s112079/certs/ca-certs.pem"
-	proxy = http://127.0.0.1:3128
+#    sslCAInfo = "/Users/s112079/certs/ca-certs.pem"
+#	proxy = http://127.0.0.1:3128
 [merge]
         ff = only
 [pull]
@@ -43,6 +43,6 @@
 [https]
     #sslCAInfo = "/Users/s112079/certs/iag-internal-ca.pem"
     sslCAInfo = "/Users/s112079/certs/ca-certs.pem"
-	proxy = http://127.0.0.1:3128
+#	proxy = http://127.0.0.1:3128
 [rerere]
 	enabled = true
